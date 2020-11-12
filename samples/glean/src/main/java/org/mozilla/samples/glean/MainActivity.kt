@@ -97,7 +97,9 @@ open class MainActivity : AppCompatActivity(), ExperimentUpdateReceiver.Experime
         textViewExperimentStatus.setBackgroundColor(Color.WHITE)
         textViewExperimentStatus.text = getString(R.string.experiment_not_active)
 
-        activeExperiments = Nimbus.getActiveExperiments()
+        val nimbus = GleanApplication.nimbus
+
+        activeExperiments = nimbus.getActiveExperiments()
 
         if (activeExperiments.any { it.slug == "test-color" }) {
             val color = when (Nimbus.getExperimentBranch("test-color")) {
